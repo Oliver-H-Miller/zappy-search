@@ -1,0 +1,120 @@
+<head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        * {
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif
+        }
+        ul li {
+            transition: all .25s ease;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        ul li:hover {
+            background: #f2f7ff;
+        }
+        ul {
+            list-style-type: none;
+            max-width: 600px;
+            padding: 0;
+            margin: 0 0 0 50px;
+        }
+        ul li p {
+            margin-block-start: .25em;
+        }
+        ul li a {
+            text-decoration: none;
+        }
+        ul li a:hover {
+            text-decoration: underline;
+        }
+        ul li small {
+            color: #15844e;
+        }
+        nav {
+            width:100%;
+            height:65px;
+            position:absolute;
+            top:0;
+            left:0;
+            right:0;
+            background: #fafafa;
+            margin: 0;
+            padding: 0;
+        }
+        main {
+            background: #fff;
+            margin: 65px 0 0 50px;
+            padding: 1em 1em 1em 1em;
+        }
+        #searchBox {
+            margin:20px 0 0 50px;
+        }
+
+        @keyframes FadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        main ul li {
+            animation: FadeIn .5s ease;
+            animation-fill-mode: backwards;
+        }
+        main ul li:nth-child(0) { animation-duration: 0s; }
+        main ul li:nth-child(1) { animation-delay: .0s }
+        main ul li:nth-child(2) { animation-delay: .1s }
+        main ul li:nth-child(3) { animation-delay: .2s }
+        main ul li:nth-child(4) { animation-delay: .3s }
+        main ul li:nth-child(5) { animation-delay: .4s }
+        main ul li:nth-child(6) { animation-delay: .5s }
+        main ul li:nth-child(7) { animation-delay: .6s }
+        main ul li:nth-child(8) { animation-delay: .7s }
+        main ul li:nth-child(9) { animation-delay: .8s }
+        main ul li:nth-child(10) { animation-delay: .9s }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<nav>
+    <div id="searchBox">
+        <form action="/" method="get">
+            <label>
+                <input type="text" name="q" value="<%=query%>">
+            </label>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</nav>
+<main>
+<% if (Array.isArray(results) && results.length > 0) {%>
+<span>Zippy search performed in just <%=searchTime%>s</span>
+<ul>
+    <% results.forEach(function(result) { %>
+        <li>
+            <a href="<%-result.link%>" referrerpolicy="no-referrer" rel="nofollow">
+                <%- result.htmlTitle %>
+            </a>
+            <br />
+            <small>
+                <%-result.displayLink%>
+                <% if (result.snippet.indexOf("...") < 14) { %>
+                &raquo; <%=result.snippet.substring(0,result.snippet.indexOf("..."))%>
+                <% } %>
+            </small>
+            <% if (result.snippet.indexOf("...") !== result.snippet.lastIndexOf("...")) { %>
+                <p><%-result.htmlSnippet.substring(result.htmlSnippet.indexOf("...")+3)%></p>
+            <% } else { %>
+                <p><%-result.htmlSnippet%></p>
+            <% } %>
+
+        </li>
+    <% }); %>
+</ul>
+<% } else { %>
+    <p>We're sorry, we didn't find anything for '<b><%=query%></b>'</p>
+<% } %>
+</main>

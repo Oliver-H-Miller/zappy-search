@@ -12,6 +12,7 @@
   "dependencies": {
     "bent": "^7.0.6",
     "express": "^4.17.1",
+    "ejs": "^1.0.0",
     "body-parser": "latest"
   }
 }
