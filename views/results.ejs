@@ -11,15 +11,18 @@
             transition: all .25s ease;
             padding: 5px;
             margin-bottom: 10px;
+            border: 1px solid transparent;
+            border-radius: 5px;
         }
         ul li:hover {
             background: #f2f7ff;
+            border: 1px solid #bdbdbd;
         }
         ul {
             list-style-type: none;
             max-width: 600px;
             padding: 0;
-            margin: 0 0 0 50px;
+            margin: 0 0 0 0;
         }
         ul li p {
             margin-block-start: .25em;
@@ -33,24 +36,55 @@
         ul li small {
             color: #15844e;
         }
+        @media only screen and (min-width : 500px) {
+            main {
+                margin-left: 5%;
+            }
+            #searchBox {
+                margin-left: 5%;
+            }
+        }
+        @media only screen and (max-width : 500px) {
+            #searchBox {
+                width: 100%;
+            }
+            #searchBar {
+                width:90% !important;
+            }
+        }
         nav {
             width:100%;
             height:65px;
-            position:absolute;
-            top:0;
-            left:0;
-            right:0;
             background: #fafafa;
             margin: 0;
-            padding: 0;
+            box-shadow: 0 -5px 5px 5px #a2a2a2;
+            overflow: hidden;
         }
         main {
             background: #fff;
-            margin: 65px 0 0 50px;
+            margin-top: 15px;
             padding: 1em 1em 1em 1em;
         }
         #searchBox {
-            margin:20px 0 0 50px;
+            margin-top: 20px;
+            padding-left: 1em;
+        }
+
+        #searchBar {
+            height: 30px;
+            max-width: 100%;
+            width: 250px;
+            border-radius: 5px;
+            padding: 5px;
+            border: 1px solid #777777;
+            font-size: 15pt;
+            background: #ffffff;
+            transition: all 500ms cubic-bezier(0.005, 0.75, 0.75, 1.000);
+            outline: none;
+        }
+        #searchBar:focus {
+            width: 350px;
+            border: 2px solid #2196F3;
         }
 
         @keyframes FadeIn {
@@ -64,6 +98,26 @@
         main ul li {
             animation: FadeIn .5s ease;
             animation-fill-mode: backwards;
+        }
+        #searchIcon {
+            height: 16px;
+            margin-left: -30px;
+        }
+        .no-display {
+            display:none;
+        }
+        #searchTime {
+            margin-top: 30px;
+        }
+        main ul li p {
+            line-height: 1.15;
+        }
+        #sideBar {
+            margin-top: 15px;
+            float: right;
+            padding: 2em;
+            border: 1px solid gray;
+            border-radius: 3px;
         }
         main ul li:nth-child(0) { animation-duration: 0s; }
         main ul li:nth-child(1) { animation-delay: .0s }
@@ -83,15 +137,22 @@
     <div id="searchBox">
         <form action="/" method="get">
             <label>
-                <input type="text" name="q" value="<%=query%>">
+                <input id="searchBar" type="text" name="q" value="<%=query%>">
             </label>
-            <input type="submit" value="Submit">
+            <label>
+                <img id="searchIcon" src="/search.svg" alt="Search">
+                <input class="no-display" type="submit" value="Submit">
+            </label>
         </form>
     </div>
 </nav>
+<% if (Array.isArray(results) && results.length > 0 && results[0]["link"].substring(0, 32) === "https://www.youtube.com/watch?v=") {%>
+    <div id="sideBar">
+        
+    </div>
+<% }%>
 <main>
 <% if (Array.isArray(results) && results.length > 0) {%>
-<span>Zippy search performed in just <%=searchTime%>s</span>
 <ul>
     <% results.forEach(function(result) { %>
         <li>
@@ -101,15 +162,8 @@
             <br />
             <small>
                 <%-result.displayLink%>
-                <% if (result.snippet.indexOf("...") < 14) { %>
-                &raquo; <%=result.snippet.substring(0,result.snippet.indexOf("..."))%>
-                <% } %>
             </small>
-            <% if (result.snippet.indexOf("...") !== result.snippet.lastIndexOf("...")) { %>
-                <p><%-result.htmlSnippet.substring(result.htmlSnippet.indexOf("...")+3)%></p>
-            <% } else { %>
-                <p><%-result.htmlSnippet%></p>
-            <% } %>
+                <p><%-result.htmlSnippet.replace("<br>", " ")%></p>
 
         </li>
     <% }); %>
@@ -117,4 +171,11 @@
 <% } else { %>
     <p>We're sorry, we didn't find anything for '<b><%=query%></b>'</p>
 <% } %>
+    <% if (Array.isArray(results) && results.length > 0) {%>
+    <span id="searchTime">Zippy search performed in just <%=searchTime%>s.</span>
+    <% } %>
 </main>
+
+<footer>
+
+</footer>

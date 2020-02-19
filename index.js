@@ -44,6 +44,8 @@ async function showResults(q) {
     return(searchResult);
 }
 
+app.use(express.static( "public" ));
+
 // Listen to the App Engine-specified port, or 8080 otherwise
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
