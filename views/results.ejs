@@ -1,4 +1,16 @@
 <head>
+    <!-- FAVICON -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <!-- end FAVICON -->
+    <title><%=query%></title>
     <style>
         body {
             margin: 0;
@@ -74,8 +86,8 @@
             height: 30px;
             max-width: 100%;
             width: 250px;
-            border-radius: 5px;
-            padding: 5px;
+            border-radius: 15px;
+            padding: 5px 5px 5px 10px;
             border: 1px solid #777777;
             font-size: 15pt;
             background: #ffffff;
@@ -118,6 +130,8 @@
             padding: 2em;
             border: 1px solid gray;
             border-radius: 3px;
+            /* TEMPORARY */
+            display: none;
         }
         main ul li:nth-child(0) { animation-duration: 0s; }
         main ul li:nth-child(1) { animation-delay: .0s }
@@ -135,9 +149,9 @@
 </head>
 <nav>
     <div id="searchBox">
-        <form action="/" method="get">
+        <form autocomplete="off" action="/" method="get">
             <label>
-                <input id="searchBar" type="text" name="q" value="<%=query%>">
+                <input autocomplete="off" id="searchBar" type="text" name="q" value="<%=query%>">
             </label>
             <label>
                 <img id="searchIcon" src="/search.svg" alt="Search">
