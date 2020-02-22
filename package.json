@@ -11,10 +11,11 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "bent": "^7.0.6",
+    "bent": "^7.1.0",
     "body-parser": "latest",
     "dotenv": "^8.2.0",
-    "ejs": "^1.0.0",
-    "express": "^4.17.1"
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "request": "^2.88.0"
   }
 }

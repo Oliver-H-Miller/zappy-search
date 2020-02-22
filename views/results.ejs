@@ -23,13 +23,11 @@
             transition: all .25s ease;
             padding: 5px;
             margin-bottom: 10px;
-            border: 1px solid transparent;
-            border-radius: 5px;
+            /*border-left: 2px solid transparent;*/
         }
-        ul li:hover {
-            background: #f2f7ff;
-            border: 1px solid #bdbdbd;
-        }
+        /*ul li:hover {
+            border-left: 2px solid #bdbdbd;
+        }*/
         ul {
             list-style-type: none;
             max-width: 600px;
@@ -144,6 +142,10 @@
         main ul li:nth-child(8) { animation-delay: .7s }
         main ul li:nth-child(9) { animation-delay: .8s }
         main ul li:nth-child(10) { animation-delay: .9s }
+        .favicon {
+            height: 14px;
+            margin-bottom: -2px;
+        }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -174,9 +176,11 @@
                 <%- result.htmlTitle %>
             </a>
             <br />
+            <img class="favicon" alt="<%-result.displayLink%>" src="/favicofinder?src=<%=result.displayLink%>">
             <small>
                 <%-result.displayLink%>
             </small>
+                <% if (result.htmlSnippet == undefined) result.htmlSnippet = "No description provided."; //not a fan of this, but some search results don't have a snippet so...%>
                 <p><%-result.htmlSnippet.replace("<br>", " ")%></p>
 
         </li>

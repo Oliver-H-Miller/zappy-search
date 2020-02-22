@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const bent = require('bent');
+const request = require('request');
 require('dotenv').config();
 
 const app = express();
@@ -19,6 +20,17 @@ app.get('/', async function (req, res) {
     const q = req.query["q"];
     if ("q" in req.query && req.query["q"] !== undefined && req.query["q"] !== " ") await res.render('results.ejs', await showResults(urlencode(q)));
     else res.sendFile("./html/start.html", { root: __dirname });
+});
+
+app.get('/favicofinder', function (req, res) {
+    // quick little proxy to get thumbnail from without having user actually contact Google
+    if ("src" in req.query && req.query["src"] !== undefined && req.query["src"] !== " ") {
+        const url = `https://s2.googleusercontent.com/s2/favicons?domain=${req.query["src"]}`;
+        request(url).pipe(res);
+    }
+    else {
+        request("https://s2.googleusercontent.com/s2/favicons?domain=www.example.com").pipe(res);
+    }
 });
 
 function urlencode(str) {
