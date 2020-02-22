@@ -1,12 +1,20 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const bent = require('bent');
+require('dotenv').config();
+
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const baseURL = "https://www.googleapis.com/customsearch/v1?cx=001740279159328743821:7iae50xhvn1&key=AIzaSyA2I-1Dt3W4cHgM4Eb-YQuSUiNlbNYUA6Y";
+// you can find your (C)ustom (S)earch (E)ngine ID by going to https://cse.google.com/cse/all
+// make a new search engine, and make sure to check
+const cseID = process.env.SEARCH_ENGINE_ID;
+const cseAPIkey= process.env.CUSTOM_SEARCH_API_KEY;
+
+const baseURL = `https://www.googleapis.com/customsearch/v1?cx=${cseID}&key=${cseAPIkey}`;
+
 app.get('/', async function (req, res) {
     const q = req.query["q"];
     if ("q" in req.query && req.query["q"] !== undefined && req.query["q"] !== " ") await res.render('results.ejs', await showResults(urlencode(q)));
