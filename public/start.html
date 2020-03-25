@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>ZappySearch - Open Source Search Engine</title>
+    <meta name="description" content="Keep your searches to yourself. Stay in control of your personal information and protect your privacy with our open source search engine.">
+    <!-- FAVICON -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <!-- end FAVICON -->
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" type="text/css" href="/styles/start.css">
+    <link rel="stylesheet" type="text/css" href="/styles/search_box.css">
+</head>
+<body>
+    <div id="homeSearch">
+        <img id="logo" alt="Zappy Search" src="/logo.svg">
+        <div id="searchBox">
+            <form autocomplete="off" action="/" method="get">
+                <input aria-label="Search Bar" autocomplete="off" id="searchBar" type="text" name="q" autofocus>
+                <label>
+                    <img id="searchIcon" src="/search.svg" alt="Search">
+                    <input class="no-display" type="submit" value="Submit">
+                </label>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <a class="left-footer" href="/blog/features-privacy-security">Features</a>
+        <a class="left-footer" href="https://github.com/Oliver-H-Miller/zappy-search">Open Source</a>
+        <a class="right-footer" href="https://lemniscatesoftware.com">LemniscateSoftware</a>
+        <a class="right-footer" href="/blog/features-privacy-security">Privacy &amp; Security</a>
+    </footer>
+</body>
+</html>

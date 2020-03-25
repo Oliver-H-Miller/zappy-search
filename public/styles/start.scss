@@ -1,0 +1,54 @@
+/* below here is probably not universal styling */
+
+ #homeSearch {
+   width: 100%;
+   text-align: center;
+   position: absolute;
+   top: 0;
+   bottom: 40%;
+   margin: auto;
+   height: 200px;
+ }
+img[src="/logo.svg"] {
+  max-width: 100%;
+}
+
+footer {
+  width: 100%;
+  height: 35px;
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  background: #f2f2f2;
+  border-top: 1px solid #e4e4e4;
+  padding-top: 12px;
+}
+footer a {
+  color: #5f6368;
+  text-decoration: none;
+
+  font-size:11pt;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+footer a.left-footer {margin-left: 25px;}
+footer a.right-footer {float: right;margin-right: 25px;}
+
+@media only screen and (max-width : 500px) {
+  footer a {
+    float: none !important;
+    display: block;
+    margin-left: 25px;
+    line-height: 2;
+  }
+  footer {
+    height: auto;
+    padding-bottom: 15px;
+  }
+}
+
+@media only screen and (max-height : 350px) {
+  footer {
+    display: none;
+  }
+}

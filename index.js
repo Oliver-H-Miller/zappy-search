@@ -19,7 +19,7 @@ const baseURL = `https://www.googleapis.com/customsearch/v1?cx=${cseID}&key=${cs
 app.get('/', async function (req, res) {
     const q = req.query["q"];
     if ("q" in req.query && req.query["q"] !== undefined && req.query["q"] !== " ") await res.render('results.ejs', await showResults(urlencode(q)));
-    else res.sendFile("./html/start.html", { root: __dirname });
+    else res.sendFile("./public/start.html", { root: __dirname });
 });
 
 app.get('/favicofinder', function (req, res) {
